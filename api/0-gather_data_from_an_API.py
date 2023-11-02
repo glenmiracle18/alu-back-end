@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+
+"""project finale"""
 import sys
 import requests
 
