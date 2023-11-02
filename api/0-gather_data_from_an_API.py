@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""getting data from the api"""
+"""
+getting data from the api
+"""
 
-import sys
-"""this is my module documentation"""
 import requests
-"""this is my module for requsests"""
+import sys
 
 employee_Id = sys.argv[2]
 
