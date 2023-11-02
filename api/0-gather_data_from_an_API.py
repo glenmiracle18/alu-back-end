@@ -7,36 +7,34 @@ import requests
 import sys
 
 if __name__ == "__main__":
-    employee_Id = sys.argv[1]
+    employee_Id = int(sys.argv[1])
 
-    api_url = "https://jsonplaceholder.typicode.com/todos?userID={employee_id}"
+    todo_url = "https://jsonplaceholder.typicode.com/todos"
     user_data_url = "https://jsonplaceholder.typicode.com/users"
 
     user_response = requests.get(user_data_url)
-    response = requests.get(api_url)
+    todo_response = requests.get(todo_url)
 
-    if response.status_code & user_response.status_code == 200:
-        todos = response.json
-        users = user_response.json
+    #if todo_response.status_code & user_response.status_code == 200:
+    todos = todo_response.json()
+    users = user_response.json()
+
+    for user in users:
+        if user.get("id") == employee_Id:
+            employee_name = user.get("name")
 
     # filter completed tasks
-    completed_tasks = []
-    todo_items = []
-    for todo in todos():
-        if employee_Id == todo['userId']:
-            todo_items.append(todo)
-            if todo['completed'] is True:
-                completed_tasks.append(todo)
-
-    # get the employee name
-    for user in users():
-        if user['id'] == employee_Id:
-            employee_name = user['name']
+    done = []
+    total = 0
+    completed = 0
+    for todo in todos:
+        if todo.get("userId") == employee_Id:
+            total += 1
+            if todo.get("completed"):
+                completed += 1
+                done.append(todo.get("title"))
 
     # Display the progress information
-    print(f"Employee {employee_name} is done with \
-        tasks({len(completed_tasks)}/{len(todo_items)}): ")
-    for task in completed_tasks:
-        print(f"/t{task['title']}")
-    else:
-        print(f"Error: {response.status_code}")
+    print(f"Employee {employee_name} is done with tasks({completed}/{total}):")
+    for _ in done:
+        print(f"\t {_}")
