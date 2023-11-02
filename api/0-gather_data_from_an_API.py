@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
-"""project finale"""
+"""
+this is my module documentation
+"""
 import sys
 import requests
 
