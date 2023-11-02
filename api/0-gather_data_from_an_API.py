@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-this is my module documentation
-"""
+"""this is my module documentation"""
 import sys
 import requests
 
