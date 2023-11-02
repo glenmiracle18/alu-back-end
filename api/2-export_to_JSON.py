@@ -19,30 +19,24 @@ if __name__ == "__main__":
 
     todos = r2.json()
 
-    for todo in todos:
-        break
-
     for user in users:
         if user.get("id") == user_id:
             name = user.get("username")
 
-    data = [{
-        user_id: [
-            {
-                'task': todo['title'],
-                'completed': todo['completed'],
-                'owner': name,
-            }
-        ]
-    }]
-    with open(file, 'w', newline='') as f:
-        i = 0
-        for i in user:
-            
-            json.dump(data, f)
+    todo_data = []
+    for todo in todos:
+        if todo.get("userId") == user_id:
+            todo_data.append(
+                    {
+                        'task': todo['title'],
+                        'completed': todo['completed'],
+                        'owner': name,
+                    })
+    print(todo_data)
 
-        # for todo in todos:
-        #     if todo.get("userId") == user_id:
-        #         todo.update({"name": name})
-        #         del todo["id"]
-        #         writer.writerow(todo)
+    user_data = [{
+        user_id: todo_data
+    }]
+
+    with open(file, 'w', newline='') as f:
+        json.dump(user_data, f)
