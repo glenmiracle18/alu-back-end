@@ -6,17 +6,18 @@ getting data from the api
 import requests
 import sys
 
-employee_Id = sys.argv[2]
+if __name__== "__main__":
+    employee_Id = sys.argv[2]
 
-api_url = "https://jsonplaceholder.typicode.com/todos?userID={employee_id}"
-user_data_url = "https://jsonplaceholder.typicode.com/users"
+    api_url = "https://jsonplaceholder.typicode.com/todos?userID={employee_id}"
+    user_data_url = "https://jsonplaceholder.typicode.com/users"
 
-user_response = requests.get(user_data_url)
-response = requests.get(api_url)
+    user_response = requests.get(user_data_url)
+    response = requests.get(api_url)
 
-if response.status_code & user_response.status_code == 200:
-    todos = response.json
-    users = user_response.json
+    if response.status_code & user_response.status_code == 200:
+        todos = response.json
+        users = user_response.json
 
     # filter completed tasks
     completed_tasks = []
