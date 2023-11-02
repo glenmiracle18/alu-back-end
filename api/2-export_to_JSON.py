@@ -34,9 +34,9 @@ if __name__ == "__main__":
                     })
     print(todo_data)
 
-    user_data = [{
+    user_data = {
         user_id: todo_data
-    }]
+    }
 
     with open(file, 'w', newline='') as f:
         json.dump(user_data, f)
