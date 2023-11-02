@@ -2,10 +2,9 @@
 """
 getting data from the api
 """
-
+import csv
 import requests
 import sys
-import csv
 
 if __name__ == "__main__":
     employee_Id = int(sys.argv[1])
