@@ -26,13 +26,11 @@ if __name__ == "__main__":
     todo_data = []
     for todo in todos:
         if todo.get("userId") == user_id:
-            todo_data.append(
-                    {
-                        'task': todo['title'],
-                        'completed': todo['completed'],
-                        'owner': name,
-                    })
-    print(todo_data)
+            todo.update({"task": todo.get("title")})
+            todo.update({"username": name})
+            for _ in ["title", "id", "userId"]:
+                del todo[_]
+            todo_data.append(todo)
 
     user_data = {
         user_id: todo_data
