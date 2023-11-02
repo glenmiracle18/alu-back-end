@@ -23,11 +23,12 @@ if __name__ == "__main__":
         if user.get("id") == employee_Id:
             employee_name = user.get("username")
 
-    with open(f'{employee_Id}.csv', 'a', newline='') as csvfile:
+    new = f"{employee_Id}.csv"
+    with open(new, 'a', newline='') as csvfile:
         writer = csv.DictWriter(csvfile,
                                 fieldnames=order, quoting=csv.QUOTE_ALL)
         for todo in todos:
             if todo.get("userId") == employee_Id:
                 del todo['id']
-                todo['username'] = user['username']
+                todo.update({'username': employee_name})
                 writer.writerow(todo)
