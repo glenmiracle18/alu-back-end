@@ -1,34 +1,34 @@
 #!/usr/bin/python3
 """
-getting data from the api
+gathing data from an api
 """
 import csv
 import requests
 import sys
 
 if __name__ == "__main__":
-    employee_Id = int(sys.argv[1])
+    user_id = int(sys.argv[1])
 
-    todo_url = "https://jsonplaceholder.typicode.com/todos"
-    user_data_url = "https://jsonplaceholder.typicode.com/users"
+    file = f"{user_id}.csv"
 
-    user_response = requests.get(user_data_url)
-    todo_response = requests.get(todo_url)
+    r1 = requests.get("https://jsonplaceholder.typicode.com/users")
 
-    todos = todo_response.json()
-    users = user_response.json()
+    users = r1.json()
 
-    order = ['userId', 'username', 'completed', 'title']
+    r2 = requests.get("https://jsonplaceholder.typicode.com/todos")
+
+    todos = r2.json()
+
     for user in users:
-        if user.get("id") == employee_Id:
-            employee_name = user.get("username")
+        if user.get("id") == user_id:
+            name = user.get("username")
 
-    new = f"{employee_Id}.csv"
-    with open(new, 'a', newline='') as csvfile:
-        writer = csv.DictWriter(csvfile,
-                                fieldnames=order, quoting=csv.QUOTE_ALL)
+    with open(file, 'a', newline='') as f:
+        header = ["userId", "name", "completed", "title"]
+        writer = csv.DictWriter(f, fieldnames=header, quoting=csv.QUOTE_ALL)
+
         for todo in todos:
-            if todo.get("userId") == employee_Id:
-                del todo['id']
-                todo.update({'username': employee_name})
+            if todo.get("userId") == user_id:
+                todo.update({"name": name})
+                del todo["id"]
                 writer.writerow(todo)
