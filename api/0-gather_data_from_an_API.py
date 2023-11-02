@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-"""this is my module documentation"""
+
 import sys
+"""this is my module documentation"""
 import requests
+"""this is my module for requsests"""
 
 employee_Id = sys.argv[2]
 
