@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""getting data from the api"""
 
 import sys
 """this is my module documentation"""
