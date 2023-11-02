@@ -6,8 +6,8 @@ getting data from the api
 import requests
 import sys
 
-if __name__== "__main__":
-    employee_Id = sys.argv[2]
+if __name__ == "__main__":
+    employee_Id = sys.argv[1]
 
     api_url = "https://jsonplaceholder.typicode.com/todos?userID={employee_id}"
     user_data_url = "https://jsonplaceholder.typicode.com/users"
@@ -35,7 +35,7 @@ if __name__== "__main__":
 
     # Display the progress information
     print(f"Employee {employee_name} is done with \
-    tasks({len(completed_tasks)}/{len(todo_items)}): ")
+        tasks({len(completed_tasks)}/{len(todo_items)}): ")
     for task in completed_tasks:
         print(f"/t{task['title']}")
     else:
